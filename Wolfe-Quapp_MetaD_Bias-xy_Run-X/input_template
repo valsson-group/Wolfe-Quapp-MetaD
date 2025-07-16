@@ -2,7 +2,7 @@ nstep             __NSTEPS__
 tstep             0.005
 temperature       __TEMPERATURE__
 friction          __FRICTION__
-random_seed       4525
+random_seed       __SEED__
 plumed_input      plumed.dat
 dimension         2
 replicas          1
