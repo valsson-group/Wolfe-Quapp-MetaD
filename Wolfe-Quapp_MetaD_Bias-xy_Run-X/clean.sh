@@ -1,0 +1,10 @@
+rm -f colvar.data
+rm -f hills.data
+rm -f histogram.data
+rm -f plumed.log
+rm -f pot_coeffs_output.data
+rm -f potential.data
+rm -f potential.dim1.data
+rm -f potential.dim2.data
+rm -f stats.out
+rm -f input

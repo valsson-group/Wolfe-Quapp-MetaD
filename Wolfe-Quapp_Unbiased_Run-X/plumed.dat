@@ -1,0 +1,5 @@
+# vim:ft=plumed
+
+p: POSITION ATOM=1
+
+PRINT ARG=p.x,p.y FILE=colvar.data STRIDE=200

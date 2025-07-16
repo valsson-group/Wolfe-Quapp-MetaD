@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+#SBATCH --job-name=md_plumed
+#SBATCH -e slurm-%j.out
+#SBATCH -o slurm-%j.out
+#SBATCH --ntasks-per-node=1        ## Number of tasks per node
+#SBATCH --cpus-per-task=1          ## Number of cpus used per task
+#SBATCH --nodes=1                  ## Number of nodes to be used
+#SBATCH -p short.36
+#SBATCH --time=12:00:00
+#
+
+./run_plumed.sh

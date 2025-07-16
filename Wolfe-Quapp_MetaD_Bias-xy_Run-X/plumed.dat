@@ -1,0 +1,18 @@
+# vim:ft=plumed
+
+p: POSITION ATOM=1
+
+METAD ...
+  LABEL=metad
+  ARG=p.x,p.y
+  PACE=200
+  SIGMA=0.2,0.2
+  HEIGHT=0.25
+  BIASFACTOR=5
+  GRID_MIN=-3.0,-3.0
+  GRID_MAX=3.0,3.0
+  CALC_RCT
+  FILE=hills.data
+... METAD
+
+PRINT ARG=p.x,p.y,metad.* FILE=colvar.data STRIDE=200

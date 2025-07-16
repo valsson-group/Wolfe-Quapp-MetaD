@@ -1,0 +1,70 @@
+# vim:ft=plumed
+
+# Need to use this in this case kB=1, should only be used if 
+# the case. Should not be to used in general. 
+UNITS NATURAL
+
+p:       READ FILE=../colvar.data IGNORE_TIME VALUES=p.x,p.y
+metad:   READ FILE=../colvar.data IGNORE_TIME VALUES=metad.rbias
+
+weights: REWEIGHT_BIAS TEMP=0.5 ARG=metad.rbias
+
+HISTOGRAM ...
+  ARG=p.x
+  GRID_MIN=-3.0
+  GRID_MAX=3.0
+  GRID_BIN=400
+  KERNEL=DISCRETE
+  LOGWEIGHTS=weights
+  LABEL=hist_x_d400
+... HISTOGRAM
+fes_x_d400: CONVERT_TO_FES GRID=hist_x_d400 TEMP=0.5 MINTOZERO
+DUMPGRID GRID=fes_x_d400 FILE=fes.x.d400.data FMT=%24.16e
+
+HISTOGRAM ...
+  ARG=p.x
+  GRID_MIN=-3.0
+  GRID_MAX=3.0
+  GRID_BIN=100
+  KERNEL=DISCRETE
+  LOGWEIGHTS=weights
+  LABEL=hist_x_d100
+... HISTOGRAM
+fes_x_d100: CONVERT_TO_FES GRID=hist_x_d100 TEMP=0.5 MINTOZERO
+DUMPGRID GRID=fes_x_d100 FILE=fes.x.d100.data FMT=%24.16e
+
+HISTOGRAM ...
+  ARG=p.y
+  GRID_MIN=-3.0
+  GRID_MAX=3.0
+  GRID_BIN=400
+  KERNEL=DISCRETE
+  LOGWEIGHTS=weights
+  LABEL=hist_y_d400
+... HISTOGRAM
+fes_y_d400: CONVERT_TO_FES GRID=hist_y_d400 TEMP=0.5 MINTOZERO
+DUMPGRID GRID=fes_y_d400 FILE=fes.y.d400.data FMT=%24.16e
+
+HISTOGRAM ...
+  ARG=p.y
+  GRID_MIN=-3.0
+  GRID_MAX=3.0
+  GRID_BIN=100
+  KERNEL=DISCRETE
+  LOGWEIGHTS=weights
+  LABEL=hist_y_d100
+... HISTOGRAM
+fes_y_d100: CONVERT_TO_FES GRID=hist_y_d100 TEMP=0.5 MINTOZERO
+DUMPGRID GRID=fes_y_d100 FILE=fes.y.d100.data FMT=%24.16e
+
+HISTOGRAM ...
+  ARG=p.x,p.y
+  GRID_MIN=-3.0,-3.0
+  GRID_MAX=3.0,3.0
+  GRID_BIN=100,100
+  KERNEL=DISCRETE
+  LOGWEIGHTS=weights
+  LABEL=hist_xy_d100
+... HISTOGRAM
+fes_xy_d100: CONVERT_TO_FES GRID=hist_xy_d100 TEMP=0.5 MINTOZERO
+DUMPGRID GRID=fes_xy_d100 FILE=fes.xy.d100.data FMT=%24.16e
